@@ -43,3 +43,26 @@ function gutenberg_default_colors() {
 
 add_action('init','gutenberg_default_colors');
 // Adds function to theme
+
+
+
+function bharlson_gutenberg_blocks() {
+    wp_register_script(
+        'custom-cta-js',
+        // custom name 
+        get_template_directory_uri() . '/assets/js/gutenberg-cta-block.js', array('wp-blocks')
+        // js  file src
+    );
+
+    register_block_type(
+        'bharlson/custom-cta',
+        // name of block type
+        // must perfectly match namespace in corresponding block js file
+        array(
+            'editor_script' => 'custom-cta-js'
+        )
+    );
+}
+//end bharlson_gutenberg_blocks
+
+add_action('init','bharlson_gutenberg_blocks');
